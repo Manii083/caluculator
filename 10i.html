@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Calculator</title>
+    <style>
+       body {
+        background-color: black;
+       }
+        .press {
+            background-color: rgb(52, 51, 51);
+            border: none;
+            height: 70px;
+            width: 70px;
+            font-size: 25px;
+            border-radius: 50px;
+            color: white;
+            margin-right: 10px;
+        }
+        .presscal {
+            background-color: orange;
+            border: none;
+            height: 70px;
+            width: 70px;
+            font-size: 25px;
+            border-radius: 50px;
+            color: white;
+        }
+        .js-calculation {
+            font-size: 40px;
+            font-family: arial;
+            color: white;
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
+        .clear{
+            font-size: 20px;
+            background-color: rgb(52, 51, 51);
+            border: none;
+            height: 70px;
+            width: 70px;
+            border-radius: 50px;
+            color: white;
+        }
+       
+    </style>
+  </head>
+  <body>
+    <!-- Create an element to display the calculation. -->
+    <p class="js-calculation"></p>
+
+    <p>
+      <button class="press" onclick="
+        updateCalculation('1');
+      ">1</button>
+
+      <button class="press" onclick="
+        updateCalculation('2');
+      ">2</button>
+
+      <button class="press" onclick="
+        updateCalculation('3');
+      ">3</button>
+
+      <button class="presscal" onclick="
+        updateCalculation(' + ');
+      ">+</button>
+    </p>
+
+    <p>
+      <button class="press" onclick="
+        updateCalculation('4');
+      ">4</button>
+
+      <button class="press" onclick="
+        updateCalculation('5');
+      ">5</button>
+
+      <button class="press" onclick="
+        updateCalculation('6');
+      ">6</button>
+
+      <button class="presscal" onclick="
+        updateCalculation(' - ');
+      ">-</button>
+    </p>
+
+    <p>
+      <button class="press" onclick="
+        updateCalculation('7');
+      ">7</button>
+
+      <button class="press" onclick="
+        updateCalculation('8');
+      ">8</button>
+
+      <button class="press" onclick="
+        updateCalculation('9');
+      ">9</button>
+
+      <button class="presscal" onclick="
+        updateCalculation(' * ');
+      ">*</button>
+    </p>
+
+    <p>
+      <button class="press" onclick="
+        updateCalculation('0');
+      ">0</button>
+
+      <button class="press" onclick="
+        updateCalculation('.');
+      ">.</button>
+
+      <button class="press" onclick="
+        // Note: eval() takes a string and runs it as code.
+        // Avoid using eval() in real world projects since
+        // it can potentially be given harmful code to run.
+        // Only use eval() for learning purposes.
+        calculation = eval(calculation);
+
+        // Display the calculation on the page
+        // instead of console.log
+        displayCalculation();
+
+        localStorage.setItem('calculation', calculation);
+      ">=</button>
+
+      <button class="presscal" onclick="
+        updateCalculation(' / ');
+      ">/</button>
+    </p>
+
+    <p>
+      <button class="clear" onclick="
+        calculation = '';
+
+        // Display the calculation on the page
+        // instead of console.log
+        displayCalculation();
+
+        localStorage.setItem('calculation', calculation);
+      ">Clear</button>
+    </p>
+
+    <script>
+      let calculation = localStorage.getItem('calculation') || '';
+
+      // Display the calculation when the page first loads.
+      displayCalculation();
+
+      function updateCalculation(value) {
+        calculation += value;
+
+        // Display the calculation on the page
+        // instead of console.log
+        displayCalculation();
+
+        localStorage.setItem('calculation', calculation);
+      }
+
+      function displayCalculation() {
+        document.querySelector('.js-calculation')
+          .innerHTML = calculation;
+      }
+    </script>
+  </body>
+</html>
